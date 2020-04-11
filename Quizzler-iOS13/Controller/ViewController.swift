@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     var quizBrain = QuizBrain()
     
@@ -53,6 +54,8 @@ class ViewController: UIViewController {
             
             // display current progress in progress bar
             self.progressBar.progress = self.quizBrain.getCurrentProgress()
+            
+            self.scoreLabel.text = "Score: \(self.quizBrain.getScore())"
         })
     }
 }
