@@ -12,8 +12,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var aButton: UIButton!
+    @IBOutlet weak var bButton: UIButton!
+    @IBOutlet weak var cButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
     
     var quizBrain = QuizBrain()
@@ -27,8 +28,8 @@ class ViewController: UIViewController {
     }
     
     // triggered whenever any button is pressed
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        let userAnswer = sender.currentTitle! // True or False
+    @IBAction func answerButtonPressed(_ sender: UIButton) {
+        let userAnswer = sender.currentTitle!
         
         if quizBrain.checkAnswer(userAnswer) {
             sender.backgroundColor = UIColor.green
@@ -48,9 +49,14 @@ class ViewController: UIViewController {
             // display current question
             self.questionLabel.text = self.quizBrain.getCurrentQuestion()
             
+            self.aButton.setTitle(self.quizBrain.getCurrentAnswers()[0], for: .normal)
+            self.bButton.setTitle(self.quizBrain.getCurrentAnswers()[1], for: .normal)
+            self.cButton.setTitle(self.quizBrain.getCurrentAnswers()[2], for: .normal)
+            
             // reset buttons color to clear
-            self.trueButton.backgroundColor = UIColor.clear
-            self.falseButton.backgroundColor = UIColor.clear
+            self.aButton.backgroundColor = UIColor.clear
+            self.bButton.backgroundColor = UIColor.clear
+            self.cButton.backgroundColor = UIColor.clear
             
             // display current progress in progress bar
             self.progressBar.progress = self.quizBrain.getCurrentProgress()
